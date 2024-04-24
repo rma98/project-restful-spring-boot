@@ -11,24 +11,24 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 
-@Table(name = "Reservassalas")
+@Table(name = "reserva_sala")
 @Data
-@Entity(name = "reservassalas")
+@Entity
 public class ReservaSala {
 
 	public ReservaSala(DadosAdicionaReservaSala dados) {
 		this.titulo=dados.titulo();
 		this.descricao=dados.descricao();
-		this.dataHora=dados.dataHora();
+		this.data_hora=dados.data_hora();
 		this.status=dados.status();
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long id_reserva_sala;
 
 	private String titulo;
 	private String descricao;
-	private LocalDateTime dataHora;
+	private LocalDateTime data_hora;
 	private String status;
 }

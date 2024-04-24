@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/reservasSalas")
+@RequestMapping("/reservaSala")
 public class ReservaSalaController {
 	
 	@Autowired
