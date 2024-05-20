@@ -19,7 +19,7 @@ public class ReservaSala {
 	public ReservaSala(DadosAdicionaReservaSala dados) {
 		this.titulo=dados.titulo();
 		this.descricao=dados.descricao();
-		this.data_hora=dados.data_hora();
+		this.dataHora=dados.dataHora();
 		this.status=dados.status();
 	}
 
@@ -29,6 +29,6 @@ public class ReservaSala {
 
 	private String titulo;
 	private String descricao;
-	private LocalDateTime data_hora;
+	private LocalDateTime dataHora;
 	private String status;
 }

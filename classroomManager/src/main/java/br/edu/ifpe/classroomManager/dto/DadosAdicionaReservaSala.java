@@ -5,6 +5,6 @@ import java.time.LocalDateTime;
 public record DadosAdicionaReservaSala(
 		String titulo, 
 		String descricao, 
-		LocalDateTime data_hora, 
+		LocalDateTime dataHora, 
 		String status) {
 }
