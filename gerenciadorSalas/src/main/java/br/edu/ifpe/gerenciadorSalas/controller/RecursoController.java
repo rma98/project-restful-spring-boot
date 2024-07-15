@@ -2,6 +2,7 @@ package br.edu.ifpe.gerenciadorSalas.controller;
 
 import br.edu.ifpe.gerenciadorSalas.model.Recurso;
 import br.edu.ifpe.gerenciadorSalas.service.RecursoService;
+import br.edu.ifpe.gerenciadorSalas.service.SalaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +13,14 @@ import java.util.List;
 @RequestMapping("/api/recursos")
 public class RecursoController {
 
-	@Autowired
-	private RecursoService recursoService;
-	
-	@GetMapping
-	public List<Recurso> getAllRecursos() {
+    @Autowired
+    private RecursoService recursoService;
+
+    @Autowired
+    private SalaService salaService;
+
+    @GetMapping
+    public List<Recurso> getAllRecursos() {
         return recursoService.findAll();
     }
 
@@ -28,8 +32,13 @@ public class RecursoController {
     }
 
     @PostMapping
-    public Recurso createRecurso(@RequestBody Recurso recurso) {
-        return recursoService.save(recurso);
+    public ResponseEntity<Recurso> createRecurso(@RequestBody Recurso recurso) {
+        return salaService.findById(recurso.getSala().getId())
+                .map(sala -> {
+                    recurso.setSala(sala);
+                    return ResponseEntity.ok(recursoService.save(recurso));
+                })
+                .orElse(ResponseEntity.badRequest().body(null));
     }
 
     @PutMapping("/{id}")
@@ -38,6 +47,7 @@ public class RecursoController {
                 .map(recurso -> {
                     recurso.setNome(recursoDetails.getNome());
                     recurso.setDescricao(recursoDetails.getDescricao());
+                    recurso.setSala(recursoDetails.getSala());
                     return ResponseEntity.ok(recursoService.save(recurso));
                 })
                 .orElse(ResponseEntity.notFound().build());
@@ -52,5 +62,4 @@ public class RecursoController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
-	
 }

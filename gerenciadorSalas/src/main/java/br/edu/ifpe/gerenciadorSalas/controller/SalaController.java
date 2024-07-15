@@ -6,19 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/salas")
 public class SalaController {
-	
-	@Autowired
-	private SalaService salaService;
-	
-	@GetMapping
-	public List<Sala> getAllSalas() {
+
+    @Autowired
+    private SalaService salaService;
+
+    @GetMapping
+    public List<Sala> getAllSalas() {
         return salaService.findAll();
     }
 
@@ -55,5 +53,4 @@ public class SalaController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
-
 }

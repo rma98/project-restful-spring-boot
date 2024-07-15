@@ -10,15 +10,15 @@ import java.util.Optional;
 
 @Service
 public class SalaService {
-	
-	@Autowired
-	private SalaRepository salaRepository;
-	
-	public List<Sala> findAll() {
+
+    @Autowired
+    private SalaRepository salaRepository;
+
+    public List<Sala> findAll() {
         return salaRepository.findAll();
     }
-	
-	public Optional<Sala> findById(Long id) {
+
+    public Optional<Sala> findById(Long id) {
         return salaRepository.findById(id);
     }
 
@@ -29,5 +29,4 @@ public class SalaService {
     public void deleteById(Long id) {
         salaRepository.deleteById(id);
     }
-
 }
