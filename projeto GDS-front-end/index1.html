@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Salas</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="styles/styles copy.scss" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+  <div class="flex h-screen flex-col">
+    <div class="flex flex-1">
+      <div class="sidebar bg-white shadow-md">
+        <div class="menu-item">
+          <div class="icon">
+            <img src="Images/do-utilizador (1) 1.svg" alt="User Icon">
+          </div>
+          <span>Hiany Silva</span>
+        </div>
+        <div class="menu-item">
+          <div class="icon">
+            <img src="Images/ensino 8.svg" alt="Salas Icon">
+          </div>
+          <span>Salas</span>
+        </div>
+        <div class="menu-item">
+          <div class="icon">
+            <img src="Images/negocios 1.svg" alt="Reservas Icon">
+          </div>
+          <span>Reservas</span>
+        </div>
+        <div class="menu-item">
+          <div class="icon">
+            <img src="Images/projetor-de-video 1.svg" alt="Recursos Icon">
+          </div>
+          <span>Recursos</span>
+        </div>
+      </div>
+      <div class="content flex flex-col flex-1">
+        <header class="header shadow-md flex items-center p-4">
+          <img src="Images/image 76.svg" alt="Logo" class="logo">
+          <h1 class="title">Gerenciamento de Salas</h1>
+          <button class="logout-btn">Sair</button>
+        </header>
+        <div id="room-list" class="flex flex-wrap p-4">
+          <!-- Sala cards serão adicionados aqui pelo JavaScript -->
+        </div>
+      </div>
+    </div>
+    <footer class="footer p-4 text-center">
+      © 2024 Gerenciamento de Salas
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const rooms = [
+        { id: 1, name: 'Sala 01', icon: 'https://via.placeholder.com/48' },
+        { id: 2, name: 'Sala 03', icon: 'https://via.placeholder.com/48' },
+        { id: 3, name: 'Sala 07', icon: 'https://via.placeholder.com/48' },
+        { id: 4, name: 'Sala 10', icon: 'https://via.placeholder.com/48' },
+        { id: 5, name: 'Lab 07', icon: 'https://via.placeholder.com/48' },
+        { id: 6, name: 'Lab 08', icon: 'https://via.placeholder.com/48' },
+        { id: 7, name: 'Lab 09', icon: 'https://via.placeholder.com/48' },
+        { id: 8, name: 'Lab 12', icon: 'https://via.placeholder.com/48' },
+      ];
+
+      const roomListElement = document.getElementById('room-list');
+
+      rooms.forEach(room => {
+        const roomCard = document.createElement('div');
+        roomCard.className = 'room-card';
+        roomCard.innerHTML = `
+          <img src="${room.icon}" alt="Room Icon">
+          <span>${room.name}</span>
+        `;
+        roomListElement.appendChild(roomCard);
+      });
+    });
+  </script>
+</body>
+</html>

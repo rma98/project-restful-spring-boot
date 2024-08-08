@@ -1,0 +1,145 @@
+$green: #327737;
+$dark-green: #098656;
+$light-grey: #E0E0E0;
+$dark-grey: #636363;
+$white: #FFFFFF;
+$background-grey: #F9F9F9;
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: $background-grey;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+header {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $dark-green;
+    color: $white;
+    padding: 10px 20px;
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+        img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+    }
+
+    .logout {
+        a {
+            color: $white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    }
+}
+
+aside {
+    background-color: #098656;
+    color: $white;
+    padding: 20px;
+
+    .user {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        span {
+            font-size: 16px;
+        }
+    }
+
+    nav {
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 15px;
+
+                a {
+                    color: $white;
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    font-size: 16px;
+
+                    .nav-icon {
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+main {
+    padding: 20px;
+
+    .rooms {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+
+        .room {
+            background-color: #098656;
+            border: 1px solid $dark-grey;
+            padding: 20px;
+            text-align: center;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .room-icon, .lab-icon {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 10px;
+            }
+
+            span {
+                font-size: 14px;
+                color: #098656;
+            }
+        }
+    }
+}
+
+footer {
+    grid-column: 1 / -1;
+    background-color: #098656;
+    color: $white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
