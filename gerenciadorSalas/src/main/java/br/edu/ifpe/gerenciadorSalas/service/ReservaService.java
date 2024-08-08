@@ -10,11 +10,11 @@ import java.util.Optional;
 
 @Service
 public class ReservaService {
-	
-	@Autowired
-	private ReservaRepository reservaRepository;
-	
-	public List<Reserva> findAll() {
+
+    @Autowired
+    private ReservaRepository reservaRepository;
+
+    public List<Reserva> findAll() {
         return reservaRepository.findAll();
     }
 
@@ -29,5 +29,4 @@ public class ReservaService {
     public void deleteById(Long id) {
         reservaRepository.deleteById(id);
     }
-
 }

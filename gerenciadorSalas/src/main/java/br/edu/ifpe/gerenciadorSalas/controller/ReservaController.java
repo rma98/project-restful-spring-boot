@@ -11,12 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/reservas")
 public class ReservaController {
-	
-	@Autowired
-	private ReservaService reservaService;
-	
-	@GetMapping
-	public List<Reserva> getAllReservas() {
+
+    @Autowired
+    private ReservaService reservaService;
+
+    @GetMapping
+    public List<Reserva> getAllReservas() {
         return reservaService.findAll();
     }
 
