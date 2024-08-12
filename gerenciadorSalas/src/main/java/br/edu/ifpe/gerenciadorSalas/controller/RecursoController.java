@@ -30,6 +30,13 @@ public class RecursoController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    
+    @GetMapping("/sala/{salaId}")
+    public ResponseEntity<List<Recurso>> getRecursosBySalaId(@PathVariable Long salaId) {
+        return salaService.findById(salaId)
+                .map(sala -> ResponseEntity.ok(recursoService.findBySalaId(salaId)))
+                .orElse(ResponseEntity.notFound().build());
+    }
 
     @PostMapping
     public ResponseEntity<Recurso> createRecurso(@RequestBody Recurso recurso) {

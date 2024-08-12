@@ -1,6 +1,7 @@
 package br.edu.ifpe.gerenciadorSalas.model;
 
 import lombok.Data;
+
 import jakarta.persistence.*;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ public class Servidor {
 
     private String nome;
     private String email;
+    private String senha; // Campo usado para a senha
     private String tipo; // Professor, Técnico, etc.
 
     @OneToMany(mappedBy = "servidor", cascade = CascadeType.ALL)

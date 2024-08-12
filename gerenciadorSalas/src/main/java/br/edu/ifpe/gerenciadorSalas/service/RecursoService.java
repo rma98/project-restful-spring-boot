@@ -17,6 +17,10 @@ public class RecursoService {
     public List<Recurso> findAll() {
         return recursoRepository.findAll();
     }
+    
+    public List<Recurso> findBySalaId(Long salaId) {
+        return recursoRepository.findBySalaId(salaId);
+    }
 
     public Optional<Recurso> findById(Long id) {
         return recursoRepository.findById(id);
