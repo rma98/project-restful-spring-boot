@@ -1,4 +1,4 @@
-package br.edu.ifpe.gerenciadorSalas.controller;
+package br.edu.ifpe.gerenciadorSalas.dto;
 
 public class AuthRequest {
     private String email;

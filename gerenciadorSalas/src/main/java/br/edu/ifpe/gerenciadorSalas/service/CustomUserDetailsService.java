@@ -7,7 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -20,9 +23,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         Servidor servidor = servidorRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Servidor não encontrado com o email: " + email));
 
+        // Use o BCryptPasswordEncoder para verificar a senha criptografada
         return User.withUsername(servidor.getEmail())
                 .password(servidor.getSenha())
-                .roles("USER") // Pode ser ajustado conforme o perfil do usuário
+                .authorities(Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))) // Ajuste as roles conforme necessário
                 .build();
     }
 }

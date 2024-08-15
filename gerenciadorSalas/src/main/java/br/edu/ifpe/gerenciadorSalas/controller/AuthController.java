@@ -1,18 +1,18 @@
 package br.edu.ifpe.gerenciadorSalas.controller;
 
-import br.edu.ifpe.gerenciadorSalas.JwtUtil;
-import br.edu.ifpe.gerenciadorSalas.model.Servidor;
-import br.edu.ifpe.gerenciadorSalas.service.ServidorService;
+import br.edu.ifpe.gerenciadorSalas.dto.AuthRequest;
+import br.edu.ifpe.gerenciadorSalas.dto.AuthResponse;
+import br.edu.ifpe.gerenciadorSalas.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -22,26 +22,24 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private ServidorService servidorService;
+    private CustomUserDetailsService userDetailsService;
 
-    @Autowired
-    private JwtUtil jwtUtil;
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> authenticateUser(@RequestBody AuthRequest authRequest) {
+    public ResponseEntity<?> authenticate(@RequestBody AuthRequest authRequest) {
         try {
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword())
+                new UsernamePasswordAuthenticationToken(
+                    authRequest.getEmail(),
+                    authRequest.getPassword()
+                )
             );
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String token = jwtUtil.generateToken(userDetails);
+            // Gerar um token JWT aqui, se aplicável
+            String token = "Gerar o token aqui"; // Substitua pela lógica de geração de token
 
-            return ResponseEntity.ok(new AuthResponse(token));
-        } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse("Email ou senha inválidos."));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new AuthResponse("Erro ao processar a autenticação."));
+            return ResponseEntity.ok(new AuthResponse("Autenticação bem-sucedida", token));
+        } catch (AuthenticationException e) {
+            return ResponseEntity.status(401).body(new AuthResponse("Falha na autenticação"));
         }
     }
 }

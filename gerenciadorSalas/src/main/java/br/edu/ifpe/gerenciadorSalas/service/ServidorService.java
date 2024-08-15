@@ -19,7 +19,7 @@ public class ServidorService {
     private PasswordEncoder passwordEncoder;
 
     public boolean existsByEmail(String email) {
-        return servidorRepository.existsByEmail(email); // Isso deve funcionar agora
+        return servidorRepository.existsByEmail(email);
     }
 
     public Servidor save(Servidor servidor) {
