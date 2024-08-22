@@ -32,7 +32,7 @@ public class SecurityConfig {
                 authorizeRequests
                     .requestMatchers("/api/auth/login", "/api/servidores").permitAll()
                     .requestMatchers("/error").permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll()
             )
             .exceptionHandling()
             .accessDeniedPage("/error");

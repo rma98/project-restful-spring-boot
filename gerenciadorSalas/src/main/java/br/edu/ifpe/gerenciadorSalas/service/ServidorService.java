@@ -23,6 +23,7 @@ public class ServidorService {
     }
 
     public Servidor save(Servidor servidor) {
+        // Criptografa a senha antes de salvar
         servidor.setSenha(passwordEncoder.encode(servidor.getSenha()));
         return servidorRepository.save(servidor);
     }
